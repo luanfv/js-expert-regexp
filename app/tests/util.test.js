@@ -11,6 +11,7 @@ describe('Util', () => {
 
     it('#evaluateRegex should not throw an error using an safe regex', () => {
         const safeRegex =  /^([a-z])$/;
-        expect(() => evaluateRegex(safeRegex)).to.be.ok;
+        expect(() => evaluateRegex(safeRegex)).to.not.throw();
+        expect(evaluateRegex(safeRegex)).to.be.ok;
     });
 });

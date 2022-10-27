@@ -164,4 +164,58 @@ describe('textProcessorFluentAPI', () => {
 
         expect(result).to.deep.equal(expected);
     });
+
+    it('#mapPerson', () => {
+        const content = [
+            [
+              'Xuxa da Silva',
+              'brasileira',
+              'casada',
+              'CPF 235.743.420-12',
+              'residente e domiciliada a Rua dos bobos',
+              'zero',
+              'bairro Alphaville',
+              'São Paulo.'
+            ],
+            [
+              'Arya Robbin',
+              'belga',
+              'casado',
+              'CPF 884.112.200-52',
+              'residente e domiciliada a Av. paulista',
+              '1400',
+              'bairro Jardins',
+              'São Paulo.'
+            ],
+        ];
+
+        const expected = [
+            {
+                nome: 'Xuxa da Silva',
+                nacionalidade: 'Brasileira',
+                estadoCivil: 'Casada',
+                documento: '23574342012',
+                rua: 'Rua dos bobos',
+                numero: 'zero',
+                bairro: 'Alphaville',
+                estado: 'São Paulo',
+            },
+            {
+                nome: 'Arya Robbin',
+                nacionalidade: 'Belga',
+                estadoCivil: 'Casado',
+                documento: '88411220052',
+                rua: 'Av. paulista',
+                numero: '1400',
+                bairro: 'Jardins',
+                estado: 'São Paulo'
+            },
+        ];
+
+        const result = new TextProcessorFluentAPI(content)
+            .mapPerson()
+            .build();
+
+        expect(result).to.deep.equal(expected);
+    });
 });
